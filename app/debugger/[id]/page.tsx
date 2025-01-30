@@ -110,39 +110,31 @@ export default function DebuggerConversation() {
   return (
     <>
       {conversation.length > 0 && (
-        <div className="flex flex-col items-center justify-end h-full pb-6 gap-3 border-2 border-white">
+        <div className="flex flex-col items-center justify-end h-full pb-6 ">
           <div
-            className="w-1/2 flex flex-col gap-3  overflow-y-scroll  justify-end border-4 border-blue-600 grow"
+            className="w-1/2 overflow-y-scroll scrollbar-none grow flex flex-col gap-3 pb-3"
             ref={conversationRef}
           >
             {conversation.map((message: chatType, index: number) => (
               <div
                 key={index}
-                className={`border-2 border-white text-justify hyphens-auto ${
+                className={`break-words text-justify hyphens-auto ${
                   message.role === "user"
-                    ? "bg-accent max-w-[90%] self-end p-3 rounded-lg "
+                    ? "bg-green-500 w-max max-w-[90%] p-3 rounded-lg self-end"
                     : ""
                 }`}
               >
-                {/* {message.role === "user" ? (
-                  <div className="border-2 border-red-600 break-words text-justify">
-                    {message.content as string}
-                  </div>
-                ) : (
-                  ""
-                )}
-                {message.role !== "user" ? (message.content as string) : ""} */}
                 {message.content as string}
               </div>
             ))}
           </div>
 
           <form
-            className=" flex border-2 border-yellow-700 items-end w-[55%] min-h-[13%] max-h-[30%] overflow-y-auto p-2"
+            className=" flex border-2 bg-green-200 items-center w-[55%] min-h-[13%] max-h-[30%] overflow-y-auto p-2 rounded-3xl"
             onSubmit={handleSubmitNewQuestion}
           >
             <textarea
-              className="h-full grow resize-none p-2"
+              className="bg-inherit text-black placeholder:text-[#555]  h-full grow resize-none p-2 focus:outline-none"
               placeholder="Ask more questions"
               value={newQuestion}
               onChange={(e) => setNewQuestion(e.target.value)}
@@ -153,9 +145,9 @@ export default function DebuggerConversation() {
 
             <button
               type="submit"
-              className="border-2 border-green-700 w-[7%] h-8 p-0 m-0 flex justify-center items-center "
+              className="bg-white rounded-full size-10 p-0 m-0 flex justify-center items-center "
             >
-              <IoMdSend className="h-8" />
+              <IoMdSend className="text-green-800 size-6 " />
             </button>
           </form>
         </div>

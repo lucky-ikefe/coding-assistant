@@ -92,7 +92,7 @@ body {
     --radius: 0.5rem;
   }
   .dark {
-    --background: 138 50% 10%; /* Darker Royal Green */
+    --background: 149 80.6% 6.1%; /* Darker Royal Green */
     --foreground: 142 21% 85%; /* Light Green */
     --card: 138 50% 12%;
     --card-foreground: 142 21% 85%;
@@ -117,6 +117,16 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
+    --green-100: #b2bfb9;
+    --green-200: #8ca197;
+    --green-300: #587667;
+    --green-400: #385b49;
+    --green-500: #06321c;
+    --green-600: #052e19;
+    --green-700: #042414;
+    --green-800: #031c0f;
+    --green-900: #03150c;
   }
 }
 
@@ -127,4 +137,10 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }

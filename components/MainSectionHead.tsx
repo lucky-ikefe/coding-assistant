@@ -17,12 +17,12 @@ export default function MainSectionHead({
           onClick={() => {
             setShowSidebar(true)
           }}
-          className={`transition-all duration-700 ${
-            !showSidebar ? "w-4" : "w-0 overflow-hidden"
+          className={`transition-all duration-500 ${
+            !showSidebar ? "size-6" : "w-0 overflow-hidden"
           }`}
         />
-        MainSectionHeader
       </div>
+      <p>Coding Assistant</p>
       <ThemeToggle />
     </div>
   )

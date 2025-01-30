@@ -30,27 +30,26 @@ export default function Interface({
       {/* sidebar */}
 
       <aside
-        className={`transition-all overflow-hidden max-w-[250px] duration-500 flex flex-col dark:bg-secondary-background ${
-          showSidebar ? "min-w-[250px] grow " : "w-0  "
+        className={`transition-all overflow-hidden max-w-[250px] duration-300 flex flex-col dark:bg-secondary-background grow ${
+          showSidebar ? "w-full grow " : "w-0  "
         }`}
       >
         <SidebarHead
-          className=" border-b-green-500 border-b-2 h-10"
+          className=" h-10"
           setShowSidebar={setShowSidebar}
+          showSidebar={showSidebar}
         />
         <div className=" grow">{sidebar}</div>
       </aside>
 
       {/* mainsection */}
-      <div className=" flex grow flex-col max-h-screen overflow-hidden ">
+      <div className=" flex grow flex-col overflow-hidden ">
         <MainSectionHead
-          className=" border-b-green-500 border-b-2 h-10"
+          className=" h-10"
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
         />
-        <div className=" grow border-2 border-red-600 overflow-hidden">
-          {mainSection}
-        </div>
+        <div className=" grow overflow-hidden">{mainSection}</div>
       </div>
     </div>
   )
