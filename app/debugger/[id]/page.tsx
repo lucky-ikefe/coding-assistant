@@ -19,7 +19,7 @@ async function getReply(array) {
 export default function DebuggerConversation() {
   const [conversation, setConversation] = useState<chatType[] | []>([])
   const [newQuestion, setNewQuestion] = useState<string>("")
-  const textAreaRef = useRef<HTMLTextAreaElement>(null)
+  const newQuestionRef = useRef<HTMLTextAreaElement>(null)
   const conversationRef = useRef<HTMLDivElement>(null)
 
   const [isGettingReply, startGettingReplyTransition] = useTransition()
@@ -106,6 +106,13 @@ export default function DebuggerConversation() {
       conversationRef.current.scrollTop = conversationRef.current.scrollHeight
     }
   }, [conversation])
+  useEffect(() => {
+    if (newQuestionRef.current) {
+      newQuestionRef.current.style.height = "auto"
+      newQuestionRef.current.style.height =
+        newQuestionRef.current.scrollHeight + 4 + "px"
+    }
+  }, [newQuestion])
 
   return (
     <>
@@ -130,17 +137,18 @@ export default function DebuggerConversation() {
           </div>
 
           <form
-            className=" flex border-2 bg-green-200 items-center w-[55%] min-h-[13%] max-h-[30%] overflow-y-auto p-2 rounded-3xl"
+            className=" flex bg-green-200 items-end w-[55%] p-4 rounded-3xl h-max "
             onSubmit={handleSubmitNewQuestion}
           >
             <textarea
-              className="bg-inherit text-black placeholder:text-[#555]  h-full grow resize-none p-2 focus:outline-none"
+              className="bg-transparent text-black placeholder:text-[#555]  grow p-2 resize-none focus:outline-none max-h-[30vh] overflow-y-auto scrollbar-thin"
               placeholder="Ask more questions"
               value={newQuestion}
               onChange={(e) => setNewQuestion(e.target.value)}
               rows={1}
-              ref={textAreaRef}
+              ref={newQuestionRef}
               name="question"
+              style={{ overflowY: "auto" }}
             />
 
             <button
