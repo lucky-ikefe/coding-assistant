@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState, useTransition } from "react"
 import { IoMdSend } from "react-icons/io"
 import type { ChatCompletionMessageParam as chatType } from "groq-sdk/resources/chat/completions.mjs"
 import { useParams } from "next/navigation"
+import ReactMarkdown from "react-markdown"
 
 type TempData = {
   uuid: string
@@ -118,22 +119,40 @@ export default function DebuggerConversation() {
     <>
       {conversation.length > 0 && (
         <div className="flex flex-col items-center justify-end h-full pb-6 ">
-          <div
-            className="w-1/2 overflow-y-scroll scrollbar-none grow flex flex-col gap-3 pb-3"
-            ref={conversationRef}
-          >
-            {conversation.map((message: chatType, index: number) => (
-              <div
-                key={index}
-                className={`break-words text-justify hyphens-auto ${
-                  message.role === "user"
-                    ? "bg-green-500 w-max max-w-[90%] p-3 rounded-lg self-end"
-                    : ""
-                }`}
-              >
-                {message.content as string}
-              </div>
-            ))}
+          <div className="w-1/2 overflow-y-scroll scrollbar-none grow flex flex-col  gap-3 justify-end">
+            <div
+              ref={conversationRef}
+              className="overflow-y-scroll pb-3 flex flex-col gap-5 scrollbar-none"
+            >
+              {conversation.map((message: chatType, index: number) => (
+                <ReactMarkdown
+                  key={index}
+                  className={` max-w-full w-full whitespace-normal break-words text-justify  ${
+                    message.role === "user"
+                      ? "bg-green-500 w-max max-w-[90%] p-3 rounded-lg self-end"
+                      : ""
+                  }`}
+                  components={{
+                    // Ensure code blocks wrap and don't overflow
+                    code: ({ ...props }) => (
+                      <code
+                        {...props}
+                        className="whitespace-pre-wrap break-words"
+                      />
+                    ),
+                    // Ensure pre blocks wrap and don't overflow
+                    pre: ({ ...props }) => (
+                      <pre
+                        {...props}
+                        className="whitespace-pre-wrap break-words m-4 bg-[#333] p-2 rounded"
+                      />
+                    ),
+                  }}
+                >
+                  {message.content as string}
+                </ReactMarkdown>
+              ))}
+            </div>
           </div>
 
           <form

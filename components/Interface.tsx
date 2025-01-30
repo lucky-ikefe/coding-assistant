@@ -45,7 +45,7 @@ export default function Interface({
       {/* mainsection */}
       <div className=" flex grow flex-col overflow-hidden ">
         <MainSectionHead
-          className=" h-10"
+          className="bg-green-400 h-10"
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
         />
