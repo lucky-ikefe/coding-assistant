@@ -1,12 +1,9 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
-export default function Home() {
+export default function Sidebar() {
   return (
     <div>
-      <div>
-        Hello, I am a Coding Assistant. What do you want me to help you with?
-      </div>
       <div className="flex flex-col items-start space-y-3">
         <Button asChild>
           <Link href="/debugger">Debug My Code</Link>
