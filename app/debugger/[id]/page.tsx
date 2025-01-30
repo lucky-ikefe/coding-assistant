@@ -2,6 +2,7 @@
 import { debugCode } from "@/action/server"
 import React, { useEffect, useRef, useState, useTransition } from "react"
 import { IoMdSend } from "react-icons/io"
+import { ImSpinner2 } from "react-icons/im"
 import type { ChatCompletionMessageParam as chatType } from "groq-sdk/resources/chat/completions.mjs"
 import { useParams } from "next/navigation"
 import ReactMarkdown from "react-markdown"
@@ -23,7 +24,7 @@ export default function DebuggerConversation() {
   const newQuestionRef = useRef<HTMLTextAreaElement>(null)
   const conversationRef = useRef<HTMLDivElement>(null)
 
-  const [isGettingReply, startGettingReplyTransition] = useTransition()
+  const [isGettingReply, startGettingReply] = useTransition()
 
   const conversationId = useParams().id as string
 
@@ -34,23 +35,25 @@ export default function DebuggerConversation() {
     const question = formData.get("question") as string
 
     if (question.trim() !== "") {
-      const debugHistory = JSON.parse(
-        localStorage.getItem("debugHistory") || "{}"
-      )
+      startGettingReply(async () => {
+        const debugHistory = JSON.parse(
+          localStorage.getItem("debugHistory") || "{}"
+        )
 
-      const newChat: chatType = { role: "user", content: question }
-      setConversation((prev) => [...prev, newChat])
+        const newChat: chatType = { role: "user", content: question }
+        setConversation((prev) => [...prev, newChat])
 
-      debugHistory[conversationId]?.push(newChat)
+        debugHistory[conversationId]?.push(newChat)
 
-      localStorage.setItem("debugHistory", JSON.stringify(debugHistory))
+        localStorage.setItem("debugHistory", JSON.stringify(debugHistory))
 
-      const reply = await getReply(debugHistory[conversationId])
-      debugHistory[conversationId] = reply
-      localStorage.setItem("debugHistory", JSON.stringify(debugHistory))
+        const reply = await getReply(debugHistory[conversationId])
+        debugHistory[conversationId] = reply
+        localStorage.setItem("debugHistory", JSON.stringify(debugHistory))
 
-      setConversation(reply)
-      setNewQuestion("")
+        setConversation(reply)
+        setNewQuestion("")
+      })
     }
   }
 
@@ -172,9 +175,14 @@ export default function DebuggerConversation() {
 
             <button
               type="submit"
-              className="bg-white rounded-full size-10 p-0 m-0 flex justify-center items-center "
+              className="bg-white rounded-full size-10 p-0 m-0 flex justify-center items-center"
+              disabled={isGettingReply}
             >
-              <IoMdSend className="text-green-800 size-6 " />
+              {!isGettingReply ? (
+                <IoMdSend className="text-green-800 size-6 " />
+              ) : (
+                <ImSpinner2 className="animate-spin text-green-800 size-6 " />
+              )}
             </button>
           </form>
         </div>
