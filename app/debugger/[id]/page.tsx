@@ -13,7 +13,7 @@ type TempData = {
   error: string
 }
 
-async function getReply(array: chatType[]) {
+async function getReply(array) {
   const reply = await debugCode(array)
   return reply
 }
@@ -72,7 +72,7 @@ export default function DebuggerConversation() {
           ? JSON.parse(unparsedDebugHistory)
           : {}
 
-        const chat: chatType[] = [
+        const chat = [
           {
             role: "user",
             content: `This is the code: ${tempData.code}. \n  While this is the error brought by the code: ${tempData.error}`,
@@ -121,43 +121,45 @@ export default function DebuggerConversation() {
   return (
     <>
       {conversation.length > 0 && (
-        <div className="h-full max-h-full pb-6 border-2 border-red-600 w-[90%] mx-auto max-w-[750px]">
-          <div
-            ref={conversationRef}
-            className="py-3 flex flex-col gap-5 scrollbar-none border-2 border-red-600 overflow-y-scroll h-[94%] w-[90%] mx-auto max-w-[700px]"
-          >
-            {conversation.map((message: chatType, index: number) => (
-              <ReactMarkdown
-                key={index}
-                className={` max-w-full w-full whitespace-normal break-words text-justify space-y-2 leading-7 ${
-                  message.role === "user"
-                    ? "bg-green-500 w-max max-w-[90%] p-3 rounded-2xl self-end"
-                    : ""
-                }`}
-                components={{
-                  // Ensure code blocks wrap and don't overflow
-                  code: ({ ...props }) => (
-                    <code
-                      {...props}
-                      className="whitespace-pre-wrap break-words"
-                    />
-                  ),
-                  // Ensure pre blocks wrap and don't overflow
-                  pre: ({ ...props }) => (
-                    <pre
-                      {...props}
-                      className="whitespace-pre-wrap break-words m-4 bg-[#333] p-2 rounded"
-                    />
-                  ),
-                }}
-              >
-                {message.content as string}
-              </ReactMarkdown>
-            ))}
+        <div className="flex flex-col items-center justify-end h-full pb-6 ">
+          <div className="w-5/6 md:w-1/2 overflow-y-scroll scrollbar-none grow flex flex-col  gap-3 justify-end">
+            <div
+              ref={conversationRef}
+              className="overflow-y-scroll pb-3 flex flex-col gap-5 scrollbar-none"
+            >
+              {conversation.map((message: chatType, index: number) => (
+                <ReactMarkdown
+                  key={index}
+                  className={` max-w-full w-full whitespace-normal break-words text-justify space-y-2 leading-7 ${
+                    message.role === "user"
+                      ? "bg-green-500 w-max max-w-[90%] p-3 rounded-lg self-end"
+                      : ""
+                  }`}
+                  components={{
+                    // Ensure code blocks wrap and don't overflow
+                    code: ({ ...props }) => (
+                      <code
+                        {...props}
+                        className="whitespace-pre-wrap break-words"
+                      />
+                    ),
+                    // Ensure pre blocks wrap and don't overflow
+                    pre: ({ ...props }) => (
+                      <pre
+                        {...props}
+                        className="whitespace-pre-wrap break-words m-4 bg-[#333] p-2 rounded"
+                      />
+                    ),
+                  }}
+                >
+                  {message.content as string}
+                </ReactMarkdown>
+              ))}
+            </div>
           </div>
 
           <form
-            className=" flex bg-background-textbox items-end w-full p-4 rounded-3xl h-[6%] max-w-[750px] border-2 border-yellow-600"
+            className=" flex bg-background-textbox items-end w-[90%] md:w-[55%] p-4 rounded-3xl h-max "
             onSubmit={handleSubmitNewQuestion}
           >
             <textarea

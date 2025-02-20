@@ -26,7 +26,7 @@ export default function TextArea({
     <div
       className={`bg-background-header inline-flex w-full py-4 rounded-[1rem] ${
         className || ""
-      } focus-within:border-green-100 focus-within:border-2`}
+      }`}
     >
       <textarea
         className="bg-transparent text-foreground   grow p-2 resize-none focus:outline-none max-h-[20vh] overflow-y-auto scrollbar-none focus:scrollbar-thin  mx-6  "

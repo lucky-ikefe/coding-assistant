@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import MainSectionHead from "@/components/MainSectionHead"
+import { ThemeProvider } from "@/components/theme-provider"
+import Interface from "@/components/Interface"
+import Sidebar from "@/components/Sidebar"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,10 +30,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col w-screen h-[100dvh] max-h-[100vh] overflow-hidden">
-          <MainSectionHead className="bg-background-header min-h-10 h-[0%]" />
-          <div className="grow">{children}</div>
-        </div>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {" "}
+          <Interface mainSection={children} />
+        </ThemeProvider>
       </body>
     </html>
   )

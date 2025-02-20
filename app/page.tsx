@@ -1,28 +1,26 @@
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="w-[90vw] max-w-[600px] mx-auto flex flex-col justify-center items-center h-full">
-      <div className="space-y-8">
-        <h1 className="text-3xl">
-          Hello, I&apos;m a Coding Assistant. What do you want me to help you
-          with?
-        </h1>
-        <div className="flex items-center gap-3">
-          <Link
-            href="/debugger"
-            className="bg-green-100 px-4 py-2 text-black text-lg font-semibold rounded-xl hover:bg-green-200"
-          >
-            Debug Your Code
-          </Link>
-          <Link
-            href="/create-function"
-            className="bg-green-100 px-4 py-2 text-black text-lg font-semibold rounded-xl hover:bg-green-200"
-          >
-            Create a Function
-          </Link>
-        </div>
+    <div>
+      <div>
+        Hello, I am a Coding Assistant. What do you want me to help you with?
+      </div>
+      <div className="flex flex-col items-start space-y-3">
+        <Button asChild>
+          <Link href="/debugger">Debug My Code</Link>
+        </Button>
+        <Button asChild>
+          <Link href="/create-function">Create A Function</Link>
+        </Button>
+        <Button asChild>
+          <Link href="/summarize">Summarize My Code</Link>
+        </Button>
+        <Button asChild>
+          <Link href="/ask">Ask other questions</Link>
+        </Button>
       </div>
     </div>
-  )
+  );
 }
