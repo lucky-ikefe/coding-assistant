@@ -130,7 +130,7 @@ export default function DebuggerConversation() {
               {conversation.map((message: chatType, index: number) => (
                 <ReactMarkdown
                   key={index}
-                  className={` max-w-full w-full whitespace-normal break-words text-justify space-y-2 leading-7 ${
+                  className={` w-full whitespace-normal break-words text-justify space-y-2 leading-7 ${
                     message.role === "user"
                       ? "bg-green-500 w-max max-w-[90%] p-3 rounded-lg self-end"
                       : ""
