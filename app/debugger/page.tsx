@@ -1,7 +1,6 @@
 "use client"
 
 import TextArea from "@/components/TextArea"
-import { Button } from "@/components/ui/button"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { v4 as uuidv4 } from "uuid"
@@ -11,7 +10,6 @@ export default function DebugCode() {
     code: string
     error: string
   }
-  // const uuid = crypto.randomUUID()
   const uuid = uuidv4()
 
   const [formData, setFormData] = useState<FormData>({
@@ -66,13 +64,13 @@ export default function DebugCode() {
   }
 
   return (
-    <div className="flex justify-center h-full">
+    <div className="mx-auto flex justify-center h-full max-w-[600px]">
       <form
         onSubmit={handleSubmit}
-        className="flex h-full  flex-col justify-center items-center space-y-10 w-3/4"
+        className="flex h-full  flex-col justify-center items-center space-y-10 w-[90%]"
       >
         <div className="flex flex-col space-y-2 justify-center items-center  w-full h-max">
-          <label htmlFor="code">Enter your code:</label>
+          <label htmlFor="code">Enter your code</label>
           {errors.code && <div className="text-destructive">{errors.code}</div>}
           <TextArea
             name="code"
@@ -84,7 +82,7 @@ export default function DebugCode() {
         </div>
         <div className="flex flex-col space-y-2 justify-center items-center  w-full h-max">
           <label htmlFor="error">
-            Enter the error (or any other explanation):
+            Enter the error (or any other explanation)
           </label>
           {errors.error && (
             <div className="text-destructive">{errors.error}</div>
@@ -97,7 +95,12 @@ export default function DebugCode() {
             className={` ${errors.code ? "border-red-500 border-2" : ""}`}
           />
         </div>
-        <Button type="submit">Debug Code</Button>
+        <button
+          className="bg-green-100 px-4 py-2 text-black text-lg font-semibold rounded-xl hover:bg-green-200"
+          type="submit"
+        >
+          Debug Code
+        </button>
       </form>
     </div>
   )

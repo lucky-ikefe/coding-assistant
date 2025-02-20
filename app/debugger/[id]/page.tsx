@@ -13,7 +13,7 @@ type TempData = {
   error: string
 }
 
-async function getReply(array) {
+async function getReply(array: chatType[]) {
   const reply = await debugCode(array)
   return reply
 }
@@ -72,7 +72,7 @@ export default function DebuggerConversation() {
           ? JSON.parse(unparsedDebugHistory)
           : {}
 
-        const chat = [
+        const chat: chatType[] = [
           {
             role: "user",
             content: `This is the code: ${tempData.code}. \n  While this is the error brought by the code: ${tempData.error}`,
