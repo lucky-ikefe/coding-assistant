@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### **Coding Assistant AI**
 
-## Getting Started
+🚀 **Your AI-powered expert for debugging, code optimization, and function generation!**
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## **🔹 Overview**
+
+Coding Assistant AI is an intelligent code assistant designed to help developers debug, and generate clean, efficient code. Whether you need error detection, or function creation, this tool provides structured and well-documented solutions.
+
+It leverages **Groq's AI model** to analyze code, fix errors, and improve efficiency while maintaining best practices for various programming languages and frameworks.
+
+---
+
+## **🔹 Features**
+
+✅ **Debugging Assistance** – Detects syntax errors, logic flaws, and best-practice violations.  
+✅ **Error Fixing & Optimization** – Corrects errors while preserving original intent and improving performance.  
+✅ **Function Generation** – Creates efficient, well-documented functions based on provided requirements.  
+✅ **Code Explanation** – Provides detailed explanations for detected issues and fixes.
+
+---
+
+## **🔹 Installation & Setup**
+
+1️⃣ **Clone the Repository:**
+
+```sh
+git clone https://github.com/lucky-ikefe/coding-assistant.git
+cd coding-assistant
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2️⃣ **Install Dependencies:**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3️⃣ **Set Up Environment Variables:**  
+Create a `.env` file in the root directory and add:
 
-## Learn More
+```sh
+GROQ_API_KEY=your_api_key_here
+```
 
-To learn more about Next.js, take a look at the following resources:
+4️⃣ **Run the Application:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## **🔹 Usage**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### **Debugging Code**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Call the `debugCode` function with an array of messages:
+
+```ts
+import { debugCode } from "./debug"
+
+const messages = [{ role: "user", content: "const x = 5 console.log(x)" }]
+
+const result = await debugCode(messages)
+console.log(result)
+```
+
+### **Generating Functions**
+
+Call the `createFunction` function with an array of messages:
+
+```ts
+import { createFunction } from "./create"
+
+const messages = [
+  { role: "user", content: "Write a function that sorts an array of numbers" },
+]
+
+const result = await createFunction(messages)
+console.log(result)
+```
+
+---
+
+## **🔹 Contributing**
+
+Contributions are welcome! If you’d like to improve the assistant, follow these steps:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-branch`)
+3. Make your changes and commit (`git commit -m "Add new feature"`)
+4. Push to your fork (`git push origin feature-branch`)
+5. Open a Pull Request
+
+---
+
+## **🔹 License**
+
+This project is licensed under the **MIT License**.
+
+---
+
+Let me know if you'd like to customize this further! 🚀
