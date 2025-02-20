@@ -13,7 +13,7 @@ type TempData = {
   description: string
 }
 
-async function getReply(array) {
+async function getReply(array: chatType[]) {
   const reply = await createFunction(array)
   return reply
 }
@@ -72,7 +72,7 @@ export default function DebuggerConversation() {
           ? JSON.parse(unparsedFunctionHistory)
           : {}
 
-        const chat = [
+        const chat: chatType[] = [
           {
             role: "user",
             content: `This is the laguage: ${tempData.language}. \n  While this is the function: ${tempData.description}`,

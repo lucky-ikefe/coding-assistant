@@ -66,10 +66,10 @@ export default function CreateFunction() {
   }
 
   return (
-    <div className="flex justify-center h-full">
+    <div className="mx-auto flex justify-center h-full max-w-[600px]">
       <form
         onSubmit={handleSubmit}
-        className="flex h-full  flex-col justify-center items-center space-y-10 w-3/4"
+        className="flex h-full  flex-col justify-center items-center space-y-10 w-[90%]"
       >
         <div className="flex flex-col space-y-2 justify-center items-center  w-full h-max">
           <label htmlFor="language">Enter the language for the function</label>
@@ -103,7 +103,12 @@ export default function CreateFunction() {
             }`}
           />
         </div>
-        <Button type="submit">Create Function</Button>
+        <Button
+          type="submit"
+          className="bg-green-100 px-4 py-2 text-black text-lg font-semibold rounded-xl hover:bg-green-200"
+        >
+          Create Function
+        </Button>
       </form>
     </div>
   )
