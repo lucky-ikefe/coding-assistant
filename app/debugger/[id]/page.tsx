@@ -122,7 +122,7 @@ export default function DebuggerConversation() {
     <>
       {conversation.length > 0 && (
         <div className="flex flex-col items-center justify-end h-full pb-6 ">
-          <div className="w-1/2 overflow-y-scroll scrollbar-none grow flex flex-col  gap-3 justify-end">
+          <div className="w-5/6 md:w-1/2 overflow-y-scroll scrollbar-none grow flex flex-col  gap-3 justify-end">
             <div
               ref={conversationRef}
               className="overflow-y-scroll pb-3 flex flex-col gap-5 scrollbar-none"
@@ -130,7 +130,7 @@ export default function DebuggerConversation() {
               {conversation.map((message: chatType, index: number) => (
                 <ReactMarkdown
                   key={index}
-                  className={` max-w-full w-full whitespace-normal break-words text-justify  ${
+                  className={` max-w-full w-full whitespace-normal break-words text-justify space-y-2 leading-7 ${
                     message.role === "user"
                       ? "bg-green-500 w-max max-w-[90%] p-3 rounded-lg self-end"
                       : ""
@@ -159,11 +159,11 @@ export default function DebuggerConversation() {
           </div>
 
           <form
-            className=" flex bg-green-200 items-end w-[55%] p-4 rounded-3xl h-max "
+            className=" flex bg-background-textbox items-end w-[90%] md:w-[55%] p-4 rounded-3xl h-max "
             onSubmit={handleSubmitNewQuestion}
           >
             <textarea
-              className="bg-transparent text-black placeholder:text-[#555]  grow p-2 resize-none focus:outline-none max-h-[30vh] overflow-y-auto scrollbar-thin"
+              className="bg-transparent text-foreground-secondary placeholder:text-[#555]  grow p-2 resize-none focus:outline-none max-h-[30vh] overflow-y-auto scrollbar-thin"
               placeholder="Ask more questions"
               value={newQuestion}
               onChange={(e) => setNewQuestion(e.target.value)}
@@ -175,13 +175,13 @@ export default function DebuggerConversation() {
 
             <button
               type="submit"
-              className="bg-white rounded-full size-10 p-0 m-0 flex justify-center items-center"
+              className="bg-foreground rounded-full size-10 p-0 m-0 flex justify-center items-center"
               disabled={isGettingReply}
             >
               {!isGettingReply ? (
-                <IoMdSend className="text-green-800 size-6 " />
+                <IoMdSend className="text-background size-6 " />
               ) : (
-                <ImSpinner2 className="animate-spin text-green-800 size-6 " />
+                <ImSpinner2 className="animate-spin text-background size-6 " />
               )}
             </button>
           </form>

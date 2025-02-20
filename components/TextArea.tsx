@@ -1,4 +1,6 @@
-import { ChangeEventHandler } from "react";
+"use client"
+
+import { ChangeEventHandler, useEffect, useRef } from "react"
 
 export default function TextArea({
   name,
@@ -7,21 +9,35 @@ export default function TextArea({
   onChange,
   className,
 }: {
-  name: string;
-  id: string;
-  value: string;
-  onChange: ChangeEventHandler<HTMLTextAreaElement>;
-  className?: string;
+  name: string
+  id: string
+  value: string
+  onChange: ChangeEventHandler<HTMLTextAreaElement>
+  className?: string
 }) {
+  const textArea = useRef<HTMLTextAreaElement>(null)
+  useEffect(() => {
+    if (textArea.current) {
+      textArea.current.style.height = "auto"
+      textArea.current.style.height = textArea.current.scrollHeight + 4 + "px"
+    }
+  }, [value])
   return (
-    <textarea
-      name={name}
-      id={id}
-      onChange={onChange}
-      value={value}
-      className={`w-full h-3/4 resize-none rounded-3xl p-6 scrollbar-thin scrollbar-thumb-slate-500 scrollbar-track-slate-700 overflow-auto overflow-x-hidden outline-none ${
+    <div
+      className={`bg-background-header inline-flex w-full py-4 rounded-[1rem] ${
         className || ""
       }`}
-    />
-  );
+    >
+      <textarea
+        className="bg-transparent text-foreground   grow p-2 resize-none focus:outline-none max-h-[20vh] overflow-y-auto scrollbar-none focus:scrollbar-thin  mx-6  "
+        value={value}
+        name={name}
+        id={id}
+        onChange={onChange}
+        rows={1}
+        ref={textArea}
+        style={{ overflowY: "auto" }}
+      />
+    </div>
+  )
 }
