@@ -121,8 +121,8 @@ export default function DebuggerConversation() {
   return (
     <>
       {conversation.length > 0 && (
-        <div className="flex flex-col items-center justify-end h-full pb-6 ">
-          <div className="w-5/6 md:w-1/2 overflow-y-scroll scrollbar-none grow flex flex-col  gap-3 justify-end">
+        <div className="flex flex-col items-center justify-end h-full py-6 ">
+          <div className="w-[90%] max-w-[700px] overflow-y-scroll scrollbar-none grow flex flex-col  gap-3 justify-end">
             <div
               ref={conversationRef}
               className="overflow-y-scroll py-3 flex flex-col gap-5 scrollbar-none"
@@ -159,7 +159,7 @@ export default function DebuggerConversation() {
           </div>
 
           <form
-            className=" flex bg-background-textbox items-end  w-[90%] md:w-[55%] p-4 rounded-3xl h-max  "
+            className=" flex bg-background-textbox items-end  w-[95%] max-w-[750px] p-4 rounded-3xl h-max  "
             onSubmit={handleSubmitNewQuestion}
           >
             <textarea
@@ -187,7 +187,11 @@ export default function DebuggerConversation() {
           </form>
         </div>
       )}
-      {conversation.length === 0 && <div>No Conversation</div>}
+      {conversation.length === 0 && (
+        <div className="flex h-full justify-center items-center">
+          Loading... or No Conversation
+        </div>
+      )}
     </>
   )
 }
